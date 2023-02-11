@@ -1,0 +1,18 @@
+---
+# tasks - install_el8.yml for nerve4-rkhunter
+
+- name: Install rkhunter on RHEL8 based hosts
+  ansible.builtin.dnf: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - epel-release
+    - rkhunter
+
+- name: Create rkhunter.conf file
+  ansible.builtin.template:
+    src: rhel8.rkhunter.conf.j2
+    dest: /etc/rkhunter.conf
+    owner: root
+    group: root
+    mode: 0644

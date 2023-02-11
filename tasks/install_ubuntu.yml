@@ -1,0 +1,15 @@
+---
+# tasks - install_ubuntu.yml for nerve4-rkhunter
+
+- name: Install rkhunter on Ubuntu based hosts
+  ansible.builtin.apt: 
+    name: "rkhunter"
+    state: present
+
+- name: Create rkhunter.conf file
+  ansible.builtin.template:
+    src: ubuntu.rkhunter.conf.j2
+    dest: /etc/rkhunter.conf
+    owner: root
+    group: root
+    mode: 0644
